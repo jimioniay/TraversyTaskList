@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://use.fontawesome.com/90a3335591.js"></script>
+    <link rel="stylesheet" href="./assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./assets/css/styles.css">
+    <title>Task List Implementation</title>
+</head>
+
+<body>
+
+    <head>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+            <a class="navbar-brand">Brand</a>
+            <button class="navbar-toggler" data-target="#my-nav" data-toggle="collapse" aria-controls="my-nav"
+                aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div id="my-nav" class="collapse navbar-collapse">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">Item 1 <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Item 2</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </head>
+    <main>
+        <div class="container-fluid bg-light">
+            <div class="jumbotron jumbotron-fluid rounded mt-4">
+                <div class="container">
+                    <div class="card text-left">
+                        <div class="card-body">
+                            <h1 class="display-5">Task List</h1>
+                            <form>
+                                <div class="form-group">
+                                    <textarea class="form-control" name="task" id="task" rows="3"
+                                        placeholder="New Tasks"></textarea>
+                                    <button type="submit" class="btn btn-outline-primary lead">Add Tasks</button>
+                                </div>
+                                <hr class="my-2">
+                            </form>
+                        </div>
+                        <div class="card-body">
+                            <h1 class="display-5">Tasks</h1>
+                            <div class="form-group">
+                                <label class="lead" for="filter">Filter Tasks</label>
+                                <input type="text" name="filter" id="filter" class="d-none">
+                                <ul class="list-group">
+                                   
+                                </ul>
+                                <button type="button" class="clear-tasks btn btn-outline-primary">Clear Tasks</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="container">
+
+                    </div>
+                </div>
+            </div>
+    </main>
+    <script src="./assets/js/popper.min.js"></script>
+    <script src="./assets/js/jquery.slim.min.js"></script>
+    <script src="./assets/js/bootstrap.min.js"></script>
+    <script src="./assets/js/app.js"></script>
+</body>
+
+</html>

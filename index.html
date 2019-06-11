@@ -14,7 +14,7 @@
 <body>
 
     <head>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-secondary sticky-top">
             <a class="navbar-brand">Brand</a>
             <button class="navbar-toggler" data-target="#my-nav" data-toggle="collapse" aria-controls="my-nav"
                 aria-expanded="false" aria-label="Toggle navigation">
@@ -37,32 +37,32 @@
             <div class="jumbotron jumbotron-fluid rounded mt-4">
                 <div class="container">
                     <div class="card text-left">
-                        <div class="card-body">
-                            <h1 class="display-5">Task List</h1>
-                            <form>
+                        <form>
+                            <div class="card-body">
+                                <h1 class="display-5">Task List Application </h1>
                                 <div class="form-group">
                                     <textarea class="form-control" name="task" id="task" rows="3"
                                         placeholder="New Tasks"></textarea>
-                                    <button type="submit" class="btn btn-outline-primary lead">Add Tasks</button>
                                 </div>
+                                <button type="submit" class="btn btn-outline-primary lead">Add Task</button>
                                 <hr class="my-2">
-                            </form>
-                        </div>
-                        <div class="card-body">
-                            <h1 class="display-5">Tasks</h1>
-                            <div class="form-group">
-                                <label class="lead" for="filter">Filter Tasks</label>
-                                <input type="text" name="filter" id="filter" class="d-none">
-                                <ul class="list-group">
-                                   
-                                </ul>
-                                <button type="button" class="clear-tasks btn btn-outline-primary">Clear Tasks</button>
                             </div>
-                        </div>
+                        </form>
+                        <form id="form-tasks">
+                            <div class="card-body">
+                                <h1 class="display-5">Tasks</h1>
+                                <div class="form-group">
+                                    <label class="lead" for="filter">Filter Tasks</label>
+                                    <input type="text" name="filter" id="filter" class="filter-text w-100 mb-4">
+                                    <ul class="list-group">
+                                    </ul>
+                                    <button type="submit" class="clear-tasks btn btn-outline-primary mt-4">Clear
+                                        Tasks</button>
+                                </div>
+                            </div>
+                        </form>
                     </div>
-                    <div class="container">
 
-                    </div>
                 </div>
             </div>
     </main>

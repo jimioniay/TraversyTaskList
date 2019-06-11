@@ -34,8 +34,6 @@ const addTasks = (e) => {
         li.appendChild(link);        
         documentUl.appendChild(li);
         documentInput.value = "";
-        
- 
     }
     e.preventDefault();
 }

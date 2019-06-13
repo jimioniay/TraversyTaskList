@@ -3,6 +3,19 @@
 // Append link to Li and insert link in LI
 // Append Li to Ul element from the forn
 
+console.log(document.scripts);
+console.log(document.forms);
+const formArr  = Array.from((document.forms));
+console.log(JSON.stringify(document.querySelectorAll("div")));
+console.log((document.querySelectorAll("div")));
+document.querySelectorAll("div").forEach((item,index) => {
+    console.log(`index: ${index}, item: `+  JSON.stringify(item));
+});
+console.log("__________________")
+formArr.forEach((item, index) =>{
+    console.log(`index: ${index}, item: `+  JSON.stringify(item));
+});
+
 documentInput = document.querySelector("#task");
 documentForm = document.querySelector("form");
 documentFormTasks = document.querySelector("#form-tasks");

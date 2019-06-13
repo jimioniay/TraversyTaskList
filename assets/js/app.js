@@ -3,18 +3,18 @@
 // Append link to Li and insert link in LI
 // Append Li to Ul element from the forn
 
-console.log(document.scripts);
-console.log(document.forms);
-const formArr  = Array.from((document.forms));
-console.log(JSON.stringify(document.querySelectorAll("div")));
-console.log((document.querySelectorAll("div")));
-document.querySelectorAll("div").forEach((item,index) => {
-    console.log(`index: ${index}, item: `+  JSON.stringify(item));
-});
-console.log("__________________")
-formArr.forEach((item, index) =>{
-    console.log(`index: ${index}, item: `+  JSON.stringify(item));
-});
+// console.log(document.scripts);
+// console.log(document.forms);
+// const formArr  = Array.from((document.forms));
+// console.log(JSON.stringify(document.querySelectorAll("div")));
+// console.log((document.querySelectorAll("div")));
+// document.querySelectorAll("div").forEach((item,index) => {
+//     console.log(`index: ${index}, item: `+  JSON.stringify(item));
+// });
+// console.log("__________________")
+// formArr.forEach((item, index) =>{
+//     console.log(`index: ${index}, item: `+  JSON.stringify(item));
+// });
 
 documentInput = document.querySelector("#task");
 documentForm = document.querySelector("form");
@@ -34,6 +34,8 @@ const fnListenAllEvents = () => {
     documentClearBtn.addEventListener("click", clearAllTasks);
     // Filter tasks
     documentFilter.addEventListener("keyup", filterTasks)
+    //Fetch from Local Storage Event
+    document.addEventListener("DOMContentLoaded", fetchFromLocalStorage("tasks"))
 }
 
 const addTasks = (e) => {
@@ -43,20 +45,50 @@ const addTasks = (e) => {
     else {
         //Add task to Filter
         console.log(documentInput.value);
-        // let li = `<li class="list-group-item">${documentInput.value}</li>` // creating the li element manaually but deprecated
-        const li = document.createElement("li"); // create li element
-        li.appendChild(document.createTextNode(documentInput.value)); //append li to inpuut
-        li.className = "list-group-item"; // add classname to li
-        const link = document.createElement("a"); // create link element
-        link.className = "float-right";
-        const i = document.createElement("i"); // create i element for fontawesome
-        i.className = "fa fa-trash";// add font awesome class to style the list item
-        link.appendChild(i);
-        li.appendChild(link);
-        documentUl.appendChild(li);
+        addToLocalStorage("tasks", documentInput.value);
         documentInput.value = "";
     }
     e.preventDefault();
+}
+
+
+
+const addToLocalStorage = (taskKey, taskData = "") => {
+    console.log("inside addToLocalStorage...");
+    let tasks;
+    if ((localStorage.getItem(taskKey) === null)) {
+        tasks = [];
+    }
+    else {
+        tasks = JSON.parse(localStorage.getItem(taskKey));
+    }
+    tasks.push(taskData);
+    localStorage.setItem(taskKey, JSON.stringify(tasks));
+}
+
+const fetchFromLocalStorage = (taskKey = "tasks") => {
+    console.log("inside fetchFromLocalStorage...");
+    let tasks;
+    if ((localStorage.getItem(taskKey) === null)) {
+        tasks = [];
+    }
+    else {
+        tasks = JSON.parse(localStorage.getItem(taskKey));
+    }
+
+    tasks.forEach(task => {
+        const li = document.createElement("li");
+        li.className = "list-group-item";
+        li.textContent = task;
+        const link = document.createElement('a');
+        link.setAttribute("class", "float-right");
+        const i = document.createElement("i");
+        i.className = "fa fa-trash";
+        link.appendChild(i);
+        li.appendChild(link);
+        documentUl.appendChild(li);
+    });
+
 }
 
 const deleteTask = (e) => {
@@ -65,8 +97,27 @@ const deleteTask = (e) => {
         if (confirm("Are you sure?")) {
             console.log(e.target.parentElement.parentElement);
             e.target.parentElement.parentElement.remove();
+            deleteTaskFromLocalStorage(e.target.parentElement.parentElement.textContent,"tasks");
         }
     }
+}
+
+const deleteTaskFromLocalStorage = (taskToBeDeleted,taskKey) => {
+    console.log(taskToBeDeleted);
+    let tasks;
+    if ((localStorage.getItem(taskKey) === null)) {
+        tasks = [];
+    }
+    else {
+        tasks = JSON.parse(localStorage.getItem(taskKey));
+    }
+
+    tasks.forEach((task, index) => {
+        if (taskToBeDeleted === task){
+            tasks.splice(index,1);
+        }
+        localStorage.setItem(taskKey,JSON.stringify(tasks));
+    });
 }
 
 const clearAllTasks = (e) => {
@@ -82,7 +133,7 @@ const filterTasks = (e) => {
     const listItems = document.querySelectorAll(".list-group-item");
     listItems.forEach(listItem => {
         let task = listItem.firstChild.textContent.toLowerCase();
-        console.log("task.includes(searchValue) : "+  task.includes(searchValue) );
+        console.log("task.includes(searchValue) : " + task.includes(searchValue));
         if (task.includes(searchValue) === true) {
             listItem.classList.add("d-inline");
         }

@@ -3,19 +3,6 @@
 // Append link to Li and insert link in LI
 // Append Li to Ul element from the forn
 
-// console.log(document.scripts);
-// console.log(document.forms);
-// const formArr  = Array.from((document.forms));
-// console.log(JSON.stringify(document.querySelectorAll("div")));
-// console.log((document.querySelectorAll("div")));
-// document.querySelectorAll("div").forEach((item,index) => {
-//     console.log(`index: ${index}, item: `+  JSON.stringify(item));
-// });
-// console.log("__________________")
-// formArr.forEach((item, index) =>{
-//     console.log(`index: ${index}, item: `+  JSON.stringify(item));
-// });
-
 documentInput = document.querySelector("#task");
 documentForm = document.querySelector("form");
 documentFormTasks = document.querySelector("#form-tasks");
@@ -45,9 +32,12 @@ const addTasks = (e) => {
     else {
         //Add task to Filter
         console.log(documentInput.value);
+        
         addToLocalStorage("tasks", documentInput.value);
+        
         documentInput.value = "";
     }
+    fetchFromLocalStorage("tasks");
     e.preventDefault();
 }
 
@@ -124,7 +114,16 @@ const clearAllTasks = (e) => {
     if (confirm("Are you sure you want to clear all tasks? ")) {
         while (documentUl.firstChild) {
             documentUl.firstChild.remove();
+            clearAllTasksFromLocalStorage();
         }
+    }
+}
+
+const clearAllTasksFromLocalStorage = () => {
+    let tasks;
+    const taskKey = "tasks";
+    if (!(localStorage.getItem(taskKey) === null)) {
+        localStorage.removeItem(taskKey);
     }
 }
 
